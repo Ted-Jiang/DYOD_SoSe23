@@ -1,6 +1,7 @@
 #include "string_utils.hpp"
 
 #include <regex>
+#include <sstream>
 
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim_all.hpp>
