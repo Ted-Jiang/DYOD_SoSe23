@@ -36,7 +36,8 @@ class Chunk : private Noncopyable {
   std::shared_ptr<AbstractSegment> get_segment(ColumnID column_id) const;
 
  protected:
-  // Implementation goes here
+  // The segments of the chunk. Each segment represents a column in the table.
+  std::vector<std::shared_ptr<AbstractSegment>> _segments;
 };
 
 }  // namespace opossum
