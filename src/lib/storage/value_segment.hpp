@@ -11,9 +11,13 @@ class ValueSegment : public AbstractSegment {
   explicit ValueSegment(bool nullable = false);
 
   // Returns the value at a certain position. If you want to write efficient operators, back off!
+  //当final关键字在方法声明的末尾时，表示该方法不能在任何派生类中被重写。
+  // 这主要用于虚函数。例如，AllTypeVariant operator[](const ChunkOffset chunk_offset) const final表示这个方法在派生类中不能被重写。
   AllTypeVariant operator[](const ChunkOffset chunk_offset) const final;
 
   // Returns whether a value is NULL.
+  // const：当const关键字在方法声明的末尾时，表示该方法是一个常量成员函数，它不能修改对象的任何数据成员（除非它们被声明为mutable）
+  // 这意味着你可以在一个常量对象上调用这个方法。
   bool is_null(const ChunkOffset chunk_offset) const;
 
   // Returns the value at a certain position. Throws an error if value is NULL.

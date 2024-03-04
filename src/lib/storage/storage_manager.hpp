@@ -40,6 +40,8 @@ class StorageManager : private Noncopyable {
   StorageManager& operator=(StorageManager&&) = default;
 
   // Implementation goes here
+  // Notice _ means private value
+  std::unordered_map<std::string, std::shared_ptr<Table>> _tables;
 };
 
 }  // namespace opossum

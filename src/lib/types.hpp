@@ -76,11 +76,20 @@ using PosList = std::vector<RowID>;
 // Prevents unnecessary, potentially expensive, copies by deleting copy constructor and copy assignment operator.
 class Noncopyable {
  protected:
+  // 这是默认构造函数，它允许创建Noncopyable的实例
   Noncopyable() = default;
+  // 这是移动构造函数，它允许创建Noncopyable的实例
   Noncopyable(Noncopyable&&) = default;
+  // 这是移动赋值运算符，它允许将一个Noncopyable实例的所有权从一个对象移动到另一个对象
+  // 如果你不写Noncopyable& operator=(Noncopyable&&) = default;这一行，
+  // C++编译器将不会为你的类自动生成移动赋值运算符。这意味着，你将无法使用移动赋值语法来将一个Noncopyable实例的所有权从一个对象移动到另一个对象。
+  // 在你的类中，如果你没有显式地声明移动赋值运算符，但你声明了复制构造函数或复制赋值运算符（在你的Noncopyable类中，这两个都被删除了），
+  // 那么编译器就不会为你的类自动生成移动赋值运算符。  因此，如果你希望你的类支持移动赋值，你需要显式地声明移动赋值运算符，就像你在Noncopyable类中所做的那样。
   Noncopyable& operator=(Noncopyable&&) = default;
   ~Noncopyable() = default;
+  // 这是拷贝构造函数，它被删除了，因此不能创建Noncopyable的拷贝
   Noncopyable(const Noncopyable&) = delete;
+  //这是复制-赋值运算符，但它也被删除了，这意味着你不能通过赋值来复制Noncopyable的实例。
   const Noncopyable& operator=(const Noncopyable&) = delete;
 };
 
