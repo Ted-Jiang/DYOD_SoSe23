@@ -6,6 +6,13 @@
 
 namespace opossum {
 
+//Notice
+/*在C++中，使用构造函数的初始化列表来初始化成员变量有几个优点:
+ * 1.效率：初始化列表中的成员变量是在构造函数体执行之前就已经初始化的。如果在构造函数体内部赋值，那么成员变量会先进行默认初始化，
+ * 然后再进行赋值。这意味着对于同一个成员变量进行了两次操作，这可能会导致不必要的性能开销。
+ * 2. const 和 引用类型的成员变量: 只能在初始化列表中进行初始化。
+ * 3. 类类型的成员变量: ～没有～ 默认构造函数，或者你想用特定的参数来构造它们，那么你必须在初始化列表中进行初始化
+  */
 Table::Table(const ChunkOffset target_chunk_size)
     : _chunks{}, _column_names{}, _column_types{}, _column_nullable{}, _target_chunk_size(target_chunk_size) {
   create_new_chunk();
